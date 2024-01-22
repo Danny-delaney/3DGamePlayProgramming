@@ -4,7 +4,7 @@ bool updatable = false;
 
 gpp::Vector3 v3;
 
-Game::Game() : window(VideoMode(800, 600), "OpenGL Cube")
+Game::Game() : window(VideoMode(800, 600), "OpenGL Cube", 7U, sf::ContextSettings(24))
 {
 	index = glGenLists(1);
 }
@@ -52,48 +52,47 @@ void Game::initialize()
 	glNewList(index, GL_COMPILE);
 	glBegin(GL_QUADS);
 	{
-		//Front Face
-		glColor3f(0.0f, 0.0f, 1.0f);
-		glVertex3f(v3.getX(), 1.0f, -5.0f);
-		glVertex3f(-1.0f, 1.0f, -5.0f);
-		glVertex3f(-1.0f, -1.0f, -5.0f);
-		glVertex3f(1.0f, -1.0f, -5.0f);
-
 		//Back Face
 		glColor3f(0.0f, 1.0f, 0.0f);
-		glVertex3f(1.0f, 1.0f, -15.0f);
-		glVertex3f(-1.0f, 1.0f, -15.0f);
-		glVertex3f(-1.0f, -1.0f, -15.0f);
-		glVertex3f(1.0f, -1.0f, -15.0f);
-
+		glVertex3f(1.0f, 1.0f, -1.0f);
+		glVertex3f(-1.0f, 1.0f, -1.0f);
+		glVertex3f(-1.0f, -1.0f, -1.0f);
+		glVertex3f(1.0f, -1.0f, -1.0f);
 
 		//left face
 		glColor3f(1.0f, 0.0f, 0.0f);
-		glVertex3f(-1.0f, 1.0f, -5.0f);
-		glVertex3f(-1.0f, 1.0f, -15.0f);
-		glVertex3f(-1.0f, -1.0f, -15.0f);
-		glVertex3f(-1.0f, -1.0f, -5.0f);
+		glVertex3f(-1.0f, 1.0f, 1.0f);
+		glVertex3f(-1.0f, 1.0f, -1.0f);
+		glVertex3f(-1.0f, -1.0f, -1.0f);
+		glVertex3f(-1.0f, -1.0f, 1.0f);
 
 		//right face
 		glColor3f(1.0f, 0.0f, 0.0f);
-		glVertex3f(1.0f, 1.0f, -5.0f);
-		glVertex3f(1.0f, 1.0f, -15.0f);
-		glVertex3f(1.0f, -1.0f, -15.0f);
-		glVertex3f(1.0f, -1.0f, -5.0f);
+		glVertex3f(1.0f, 1.0f, 1.0f);
+		glVertex3f(1.0f, 1.0f, -1.0f);
+		glVertex3f(1.0f, -1.0f, -1.0f);
+		glVertex3f(1.0f, -1.0f, 1.0f);
 
 		//top face
 		glColor3f(1.0f, 1.0f, 1.0f);
-		glVertex3f(1.0f, 1.0f, -5.0f);
-		glVertex3f(-1.0f, 1.0f, -5.0f);
-		glVertex3f(-1.0f, 1.0f, -15.0f);
-		glVertex3f(1.0f, 1.0f, -15.0f);
+		glVertex3f(1.0f, 1.0f, 1.0f);
+		glVertex3f(-1.0f, 1.0f, 1.0f);
+		glVertex3f(-1.0f, 1.0f, -1.0f);
+		glVertex3f(1.0f, 1.0f, -1.0f);
 
 		//bottom face
 		glColor3f(0.0f, 0.0f, 1.0f);
-		glVertex3f(1.0f, -1.0f, -5.0f);
-		glVertex3f(-1.0f, -1.0f, -5.0f);
-		glVertex3f(-1.0f, -1.0f, -15.0f);
-		glVertex3f(1.0f, -1.0f, -15.0f);
+		glVertex3f(1.0f, -1.0f, 1.0f);
+		glVertex3f(-1.0f, -1.0f, 1.0f);
+		glVertex3f(-1.0f, -1.0f, -1.0f);
+		glVertex3f(1.0f, -1.0f, -1.0f);
+
+		//Front Face
+		glColor3f(0.0f, 0.0f, 1.0f);
+		glVertex3f(v3.getX(), 1.0f, 1.0f);
+		glVertex3f(-1.0f, 1.0f, 1.0f);
+		glVertex3f(-1.0f, -1.0f, 1.0f);
+		glVertex3f(1.0f, -1.0f, 1.0f);
 	}
 	glEnd();
 	glEndList();
@@ -135,8 +134,10 @@ void Game::draw()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	cout << "Drawing Cube " << endl;
+	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	glRotatef(rotationAngle, 1, 1, 1); // Rotates the camera on Z Axis
+	glTranslatef(0,0,-10);
+	glRotatef(rotationAngle, 0, 0, 0); // Rotates the camera on Z Axis
 
 	glCallList(1);
 
