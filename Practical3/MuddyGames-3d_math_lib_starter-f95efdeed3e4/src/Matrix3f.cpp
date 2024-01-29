@@ -35,6 +35,14 @@ Vector3f gpp::operator * (const Matrix3f& lhs, const Vector3f& rhs) {
 	);
 }
 
+Vector3f gpp::operator + (const Matrix3f& lhs, const Vector3f& rhs) {
+	return Vector3f(
+		lhs.A11 + rhs.getX() + lhs.A12 + rhs.getY() + lhs.A13 + rhs.getZ(),
+		lhs.A21 + rhs.getX() + lhs.A22 + rhs.getY() + lhs.A23 + rhs.getZ(),
+		lhs.A31 + rhs.getX() + lhs.A32 + rhs.getY() + lhs.A33 + rhs.getZ()
+	);
+}
+
 Vector3f Matrix3f::row(const int& i) const
 {
 	switch (i)
@@ -88,6 +96,33 @@ Matrix3f Matrix3f::rotateZ(const float& angle) {
 		sin(radians), cos(radians), 0.0,
 		0.0, 0.0, 1.0
 	);
+}
+
+Matrix3f Matrix3f::translateX(const float& Distance) {
+	/*return Matrix3f(
+		Distance, 0.0, 0.0,
+		Distance, 0.0, 0.0,
+		Distance, 0.0, 0.0,
+	);*/
+	return Matrix3f();
+}
+
+Matrix3f Matrix3f::translateY(const float& Distance) {
+	/*return Matrix3f(
+		0.0, Distance, 0.0,
+		0.0, Distance, 0.0,
+		0.0, Distance, 0.0,
+	);*/
+	return Matrix3f();
+}
+
+Matrix3f Matrix3f::translateZ(const float& Distance) {
+	/*return Matrix3f(
+		0.0, 0.0, Distance,
+		0.0, 0.0, Distance,
+		0.0, 0.0, Distance,
+	);*/
+	return Matrix3f();
 }
 
 

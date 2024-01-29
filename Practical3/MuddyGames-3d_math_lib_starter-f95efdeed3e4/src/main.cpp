@@ -123,19 +123,33 @@ int main()
 					print(triangle); 
 					break;
 				case sf::Keyboard::Up:
-					// Quaternion Rotate Left
-					triangle[0] = q.rotate(triangle[0], 5.0f);
-					triangle[1] = q.rotate(triangle[1], 5.0f);
-					triangle[2] = q.rotate(triangle[2], 5.0f);
+					// Matrix Rotate Right
+					triangle[0] = gpp::Matrix3f::translateZ(5.0f) + triangle[0];
+					triangle[1] = gpp::Matrix3f::translateZ(5.0f) + triangle[1];
+					triangle[2] = gpp::Matrix3f::translateZ(5.0f) + triangle[2];
 					print(triangle); 
 					break;
 				case sf::Keyboard::Down:
-					// Quaternion Rotate Right
-					triangle[0] = q.rotate(triangle[0], -5.0f);
-					triangle[1] = q.rotate(triangle[1], -5.0f);
-					triangle[2] = q.rotate(triangle[2], -5.0f);
+					// Matrix Rotate Right
+					triangle[0] = gpp::Matrix3f::translateZ(-5.0f) + triangle[0];
+					triangle[1] = gpp::Matrix3f::translateZ(-5.0f) + triangle[1];
+					triangle[2] = gpp::Matrix3f::translateZ(-5.0f) + triangle[2];
 					print(triangle); 
 					break;
+				//case sf::Keyboard::Up:
+				//	// Quaternion Rotate Left
+				//	triangle[0] = q.rotate(triangle[0], 5.0f);
+				//	triangle[1] = q.rotate(triangle[1], 5.0f);
+				//	triangle[2] = q.rotate(triangle[2], 5.0f);
+				//	print(triangle); 
+				//	break;
+				//case sf::Keyboard::Down:
+				//	// Quaternion Rotate Right
+				//	triangle[0] = q.rotate(triangle[0], -5.0f);
+				//	triangle[1] = q.rotate(triangle[1], -5.0f);
+				//	triangle[2] = q.rotate(triangle[2], -5.0f);
+				//	print(triangle); 
+				//	break;
 				}
 				break;
 			}
